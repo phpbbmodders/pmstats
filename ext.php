@@ -14,32 +14,47 @@ use phpbb\extension\base;
 class ext extends base
 {
 	/**
-	* Enable extension if phpBB version requirement is met
-	*
-	* @var string Require 3.2.0-a1 due to updated 3.2 syntax
-	*
-	* @return bool
-	* @access public
-	*/
+	 * Check whether the extension can be enabled.
+	 * The current phpBB and PHP version should meet or
+	 * exceed the minimum version required by this extension:
+	 *
+	 * @return bool|array
+	 * @access public
+	 */
 	public function is_enableable()
 	{
-		// Requires phpBB 3.3.0 or newer.
-		$is_enableable = phpbb_version_compare(PHPBB_VERSION, '3.2.0', '>=') && phpbb_version_compare(PHPBB_VERSION, '4.0.0@dev', '<');
+		$enableable = $this->check_phpbb_version() && $this->check_php_version();
 
-		// Display a custom warning message if requirement fails.
-		if (!$is_enableable)
+		if (!$enableable)
 		{
-			// Need to cater for 3.1 and 3.2
-			if (phpbb_version_compare(PHPBB_VERSION, '3.2.0', '>='))
-			{
-				$this->container->get('language')->add_lang('ext_enable_error', 'david63/pmstats');
-			}
-			else
-			{
-				$this->container->get('user')->add_lang_ext('david63/pmstats', 'ext_enable_error');
-			}
+			$language = $this->container->get('language');
+			$language->add_lang('pmstats_install', 'david63/pmstats');
+
+			return $language->lang('PMSTATS_NOT_ENABLEABLE');
 		}
 
-		return $is_enableable;
+		return $enableable;
+	}
+
+	/**
+	 * Require phpBB 3.3.19 due to several security fixes in the phpBB software.
+	 * Retain the existing upper limit excluding phpBB 4.0.
+	 *
+	 * @return bool
+	 */
+	protected function check_phpbb_version()
+	{
+		return phpbb_version_compare(PHPBB_VERSION, '3.3.19', '>=')
+			&& phpbb_version_compare(PHPBB_VERSION, '4.0.0-dev', '<');
+	}
+
+	/**
+	 * Requires PHP 8.3.36 due to security fixes.
+	 *
+	 * @return bool
+	 */
+	protected function check_php_version()
+	{
+		return PHP_VERSION_ID >= 80336;
 	}
 }
