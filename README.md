@@ -9,12 +9,11 @@ Adds an Admin option to display a list of the number of member's PM's in each bo
 [![Total Downloads](https://poser.pugx.org/david63/pmstats/downloads)](https://packagist.org/packages/david63/pmstats)
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/160016c188f24aacb4f74a231c0dea3e)](https://www.codacy.com/manual/david63/pmstats?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=david63/pmstats&amp;utm_campaign=Badge_Grade)
 
-[![Compatible](https://img.shields.io/badge/compatible-phpBB:3.2.x-blue.svg)](https://shields.io/)
 [![Compatible](https://img.shields.io/badge/compatible-phpBB:3.3.x-blue.svg)](https://shields.io/)
 
 ## Minimum Requirements
-* phpBB 3.3.0
-* PHP 7.1.3
+* phpBB 3.3.19 or later
+* PHP 8.1 or later
 
 ## Install
 1. [Download the latest release](https://github.com/david63/pmstats/archive/3.2.zip) and unzip it.
