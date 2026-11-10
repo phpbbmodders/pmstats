@@ -16,5 +16,5 @@ if (empty($lang) || !is_array($lang))
 }
 
 $lang = array_merge($lang, array(
-	'PMSTATS_NOT_ENABLEABLE' => '[**] PM statistics could not be enabled. It requires phpBB 3.3.19 or a later 3.3 release, and PHP 8.3.36 or later.',
+	'PMSTATS_NOT_ENABLEABLE' => '[**] PM statistics could not be enabled. It requires phpBB 3.3.19 or a later 3.3 release, and PHP 8.1 or later.',
 ));
